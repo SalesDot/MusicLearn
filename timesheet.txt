@@ -1,0 +1,64 @@
+# Timelog
+
+* MusicLearn
+* Harvey Cameron-Sproull
+* 2467610c
+* Xianghu (Sharon) Ding
+
+## Guidance
+
+* This file contains the time log for your project. It will be submitted along with your final dissertation.
+* **YOU MUST KEEP THIS UP TO DATE AND UNDER VERSION CONTROL.**
+* This timelog should be filled out honestly, regularly (daily) and accurately. It is for *your* benefit.
+* Follow the structure provided, grouping time by weeks.  Quantise time to the half hour.
+
+## Week 1
+
+### 19 September
+* *30 min* meeting with supervisor
+* followed react tutorial to familiarise myself with the library
+
+3 hours
+
+## 20 September
+
+
+* came up with rudamentary plan for researching with user survey
+* continued working on React learning
+2 hours
+
+22 September
+* carried out initial user survey on myself as a test subject
+* started timesheet
+1 hour
+
+Week 2
+
+### 26 September
+* prepared for meeting with supervisor with progress made in week before
+* 20 min meeting with supervisor
+* wrote up notes afterwards
+
+### 28 sept
+* began writing revised user study plan based on past experiences of target audience
+* 1 hour
+
+### 29 Sept
+* background reading on early music learners
+* 1 hour
+
+### 1st October
+* setup admin regarding timesheet, 
+* continued planning revised user study
+3 hours
+
+### 3rd October
+Began user study
+1 hour
+
+### 5th October 
+Completed final user study
+ 2 hour
+
+ 10th October
+ ## 30 min meeting with advisor
