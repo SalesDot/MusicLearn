@@ -1,20 +1,20 @@
 .navbar {
   background-color: #060b26;
-  height: 80px;
+  height: 62px;
   display: flex;
   justify-content: start;
   align-items: center;
 }
 
 .menu-bars {
-  margin-left: 2rem;
+  margin-left: 1rem;
   font-size: 2rem;
   background: none;
 }
 
 .nav-menu {
   background-color: #060b26;
-  width: 250px;
+  width: 175px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -33,7 +33,7 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  padding: 8px 0px 8px 16px;
+  padding: 8px 0px 0px 0px;
   list-style: none;
   height: 60px;
 }
@@ -46,8 +46,8 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 16px;
-  border-radius: 4px;
+  padding: 0 0px;
+  border-radius: 0px;
 }
 
 .nav-text a:hover {
