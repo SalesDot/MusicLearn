@@ -10,6 +10,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.6",
+    "aws-sdk": "^2.1530.0",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "mock-aws-s3": "^4.0.2",
+    "nock": "^13.4.0",
     "react": "^18.2.0",
     "react-auth-kit": "^3.0.0-alpha.44",
     "react-dom": "^18.2.0",

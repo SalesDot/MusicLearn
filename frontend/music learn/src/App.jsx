@@ -6,9 +6,9 @@ import Home from "./pages/Home";
 import MySongs from "./pages/MySongs";
 import Account from "./pages/Account";
 import Progress from "./pages/Progress";
-//import ProtectedRoute from "./components/ProtectedRoute"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
+import { AuthContext, AuthProvider }  from './AuthContext';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -23,7 +23,9 @@ function App() {
 
 
   return (
+    
     <>
+    <AuthProvider>
         <Router>
           <Navbar />
           <Routes>
@@ -35,8 +37,9 @@ function App() {
             <Route path="/Register" element={<Register />} />
           </Routes>
         </Router>
-      
+        </AuthProvider>
     </>
+    
   );
 }
 

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../AuthContext';
 
-function LoginPage({ onLogin }) {
+function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { token, setToken } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('${process.env.REACT_APP_API_URL}login', {
+      const response = await fetch('http://localhost:5000/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -18,10 +20,11 @@ function LoginPage({ onLogin }) {
       if (response.ok) {
         const data = await response.json();
         // Login was successful
+        setToken(data.token);
         console.log("User logged in successfully");
-        onLogin(data.token); // Pass the token to the parent component or store it
+         
       } else {
-        // Handle errors, e.g., invalid credentials
+        // Handle errors
         console.error("Login failed");
       }
     } catch (error) {
@@ -29,23 +32,37 @@ function LoginPage({ onLogin }) {
     }
   };
 
+  const handleLogout = () => {
+    setToken(null);
+  };
+
+  const isLoggedIn = token !== null;
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      {isLoggedIn ? (
+        <div>
+          <p>User is logged in!</p>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <h2>Login</h2>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <button type="submit">Login</button>
+        </form>
+      )}
+    </div>
   );
 }
 
