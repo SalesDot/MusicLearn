@@ -14,6 +14,27 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/profile', async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    
+    if (!token) {
+      return res.status(401).json({ message: 'Authorization token is missing' });
+    }
+
+    const decodedToken = jwt.verify(token, 'your_secret_key');
+    const user = await User.findOne({ username: decodedToken.username }, { password: 0 });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // register a new user
 router.post('/register', async (req, res) => {
   const {
@@ -50,14 +71,12 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
-    
+
     try {
       const user = await User.findOne({ username });
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-      console.log('Stored Password:', user.password);
-      console.log('Provided Password:', password);
       const passwordMatch = await bcrypt.compare(password, user.password);
       
       if (!passwordMatch) {

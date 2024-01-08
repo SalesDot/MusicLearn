@@ -9,13 +9,10 @@ const userSchema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     bio: String, 
+    favoritedSongs: [{ type: Schema.Types.ObjectId, ref: 'Song' }],
   }, {timestamps: true,});
   
   const User = mongoose.model('User', userSchema);
   
 
 module.exports = User;
-
-//songsCompleted: [{ type: Schema.Types.ObjectId, ref: 'Song' }], 
-    // coursesCompleted: [{ type: Schema.Types.ObjectId, ref: 'Course' }], 
-    // enrolledCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }], 

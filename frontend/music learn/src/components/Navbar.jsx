@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { SidebarData } from './SidebarData';
+import { generateSidebarData } from './SidebarData';
+import { AuthContext } from '../AuthContext';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const { token } = useContext(AuthContext);
 
   const showSidebar = () => setSidebar(!sidebar);
-
+  const SidebarData = generateSidebarData();
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>

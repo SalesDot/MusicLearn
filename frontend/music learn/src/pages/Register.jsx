@@ -17,6 +17,9 @@ function RegisterPage() {
       console.log('User is already logged in!');
       return;
     }
+    if (!username || !email || !password || !dateOfBirth || !firstName || !lastName) {
+      return res.status(400).json({ error: 'Please provide all required fields' });
+    }
     try {
       const response = await fetch('http://localhost:5000/users/register', {
         method: 'POST',
@@ -45,12 +48,6 @@ function RegisterPage() {
     } catch (error) {
       console.error("An error occurred:", error);
     }
-  };
-
-  const handleLogout = () => {
-    // Perform logout action - remove token from local storage or cookies
-    setToken(null);
-    // onLogout();
   };
 
   return (
@@ -104,7 +101,7 @@ function RegisterPage() {
           <button type="submit">Register</button>
         </form>
       )}
-      <button onClick={handleLogout}>Logout</button>
+       {token !== null && <button onClick={() => setToken(null)}>Logout</button>}
     </div>
   );
 }

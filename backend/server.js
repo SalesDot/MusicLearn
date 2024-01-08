@@ -18,8 +18,10 @@ async function main() {
 }
 
 const userRoute = require('./Routes/users');
+const songRoute = require('./Routes/songs');
 
 app.use('/Users', userRoute);
+app.use('/Songs', songRoute);
 
 app.listen(5000, () => {
   console.log('Server is running on port 5000');
