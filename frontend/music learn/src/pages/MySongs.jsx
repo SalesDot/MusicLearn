@@ -71,7 +71,7 @@ function MySongs() {
         <span>Title</span>
         <span>Artist</span>
         <span onClick={toggleSortOrder}>
-          Difficulty{' '}
+          Difficulty{''}
           {sortOrder === 'ascending' ? (
             <span>&#9660;</span>
           ) : (
