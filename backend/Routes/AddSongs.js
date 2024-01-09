@@ -5,8 +5,6 @@ const mongoDB = "mongodb+srv://admin:simple@harveyscluster.ltgag1e.mongodb.net/?
 mongoose.connect(mongoDB)
   .then(() => {
     console.log('Connected to MongoDB');
-    
-
 
     const newSong = new Song({
       title: "Do I Wanna Know?",
