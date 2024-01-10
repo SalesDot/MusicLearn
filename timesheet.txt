@@ -84,3 +84,58 @@ Completed final user study
 
 7th November
 ## 20 min meeting with advisor
+
+8th November
+## 1 hour planning session
+
+rest of November, working on other projects
+
+9th December
+## went over code to remailiarise myself with where project was left 2 hours
+
+10th December
+## 1 hour to write plan for advisor
+
+13th December
+## 2 hours began researching database connectivity 
+## 1 hour began db implementation 
+
+14th December
+## 3 hours Database implementation
+
+16th December
+## 2 hours database design
+## 1 1/2 hours having issues so spent more time researching
+
+20th December
+## 2 hours successfully implementing database connectivity
+## 2 hours began implementing user authentication
+
+21st December
+## 4 hours implementing user authentication
+
+(Working/break over Christmas/new years period)
+
+2st January
+## 5 hours coding
+
+3rd January
+## 5 hours coding
+
+4th January
+## 6 hours coding
+
+6th January
+## 3 hours coding
+
+7th January
+## 5 hours coding
+8th January
+## 4 hours coding
+
+9th January
+## 15 min meeting with advisor
+## 3 hours coding
+
+10th January
+##
