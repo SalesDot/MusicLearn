@@ -172,4 +172,26 @@ router.post('/favorites/remove', async (req, res) => {
   }
 });
 
+router.get('/completedCourses', async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+
+    if (!token) {
+      return res.status(401).json({ message: 'Authorization token is missing' });
+    }
+
+    const decodedToken = jwt.verify(token, 'your_secret_key');
+
+    const user = await User.findOne({ username: decodedToken.username }, { completedCourses: 1 });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ completedCourses: user.completedCourses });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

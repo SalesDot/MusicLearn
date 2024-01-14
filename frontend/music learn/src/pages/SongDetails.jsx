@@ -84,7 +84,7 @@ function SongDetails() {
 
   const tabSections = Object.keys(song.tab).map((sectionName, index) => (
     <div key={index}>
-      <h3>{sectionName}</h3>
+      <h10>{sectionName}</h10>
       <pre>{song.tab[sectionName]}</pre>
     </div>
   ));

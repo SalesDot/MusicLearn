@@ -3,16 +3,15 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { generateSidebarData } from './SidebarData';
-import { AuthContext } from '../AuthContext';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
-  const { token } = useContext(AuthContext);
 
   const showSidebar = () => setSidebar(!sidebar);
   const SidebarData = generateSidebarData();
+
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -20,6 +19,13 @@ function Navbar() {
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
+          <div className='navbar-title'>
+            {/*<img src= alt="Logo" className='navbar-logo' />*/}
+            <h1>MusicLearn</h1>
+          </div>
+          <div className='navbar-content'>
+            {/* Add your content on the far right here */}
+          </div>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>

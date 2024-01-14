@@ -8,8 +8,9 @@ import Account from "./pages/Account";
 import Progress from "./pages/Progress";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import SongDetails from "./components/SongDetails";
+import SongDetails from "./pages/SongDetails";
 import { AuthProvider } from './AuthContext';
+import Courses from './pages/Courses';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/songs/:id" element={<SongDetails />} />
+            <Route path="/courses/:id" element={<Courses />} />
           </Routes>
         </div>
       </AuthProvider>

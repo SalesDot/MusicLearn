@@ -19,9 +19,14 @@ async function main() {
 
 const userRoute = require('./Routes/users');
 const songRoute = require('./Routes/songs');
+const courseRoute = require('./Routes/courses');
+const taskRoute = require('./Routes/tasks');
 
 app.use('/Users', userRoute);
 app.use('/Songs', songRoute);
+app.use('/Courses', courseRoute);
+app.use('/tasks', taskRoute);
+
 
 app.listen(5000, () => {
   console.log('Server is running on port 5000');
