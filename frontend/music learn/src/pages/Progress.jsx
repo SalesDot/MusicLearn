@@ -23,7 +23,7 @@ const renderStars = (rating) => {
 function Progress() {
   const [courses, setCourses] = useState([]);
   const [completedCourses, setCompletedCourses] = useState([]);
-  const [showCompleted, setShowCompleted] = useState(true);
+  const [showCompleted, setShowCompleted] = useState(false);
   const { token } = useContext(AuthContext);
 
   useEffect(() => {

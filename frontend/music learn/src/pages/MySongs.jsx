@@ -91,7 +91,7 @@ function MySongs() {
   });
   const getFilteredSongs = () => {
     if (showFavorites) {
-      const favoriteIds = userFavorites.map((favorite) => favorite._id); // Extracting _id values
+      const favoriteIds = userFavorites.map((favorite) => favorite._id);
       return sortedSongs.filter((song) => favoriteIds.includes(song._id));
     }
     return sortedSongs;

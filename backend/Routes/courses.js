@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Course = require('../models/course.model');
 
-// Get all courses
+
 router.get('/', async (req, res) => {
   try {
     const courses = await Course.find();
@@ -12,7 +12,22 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Add a new course
+router.get('/:id', async (req, res) => {
+  const courseId = req.params.id;
+
+  try {
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    res.json(course);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 router.post('/add', async (req, res) => {
   const { courseName, difficultyLevel } = req.body;
 
