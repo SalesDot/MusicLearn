@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams, Link } from "react-router-dom";
 
 function Courses() {
   const [course, setCourse] = useState(null);
@@ -15,8 +15,10 @@ function Courses() {
         const songIds = Array.isArray(courseDetails.songIds)
           ? courseDetails.songIds
           : [courseDetails.songIds];
-
-        const songsResponse = await axios.get(`http://localhost:5000/songs/songs/${songIds.join(',')}`);
+        
+        const songsResponse = await axios.get(
+          `http://localhost:5000/songs/songs/${songIds.join(",")}`
+        );
         const songs = Array.isArray(songsResponse.data)
           ? songsResponse.data
           : [songsResponse.data];
@@ -25,7 +27,9 @@ function Courses() {
           ? courseDetails.taskIds
           : [courseDetails.taskIds];
 
-        const tasksResponse = await axios.get(`http://localhost:5000/tasks/${taskIds.join(',')}`);
+        const tasksResponse = await axios.get(
+          `http://localhost:5000/tasks/${taskIds.join(",")}`
+        );
         const tasks = Array.isArray(tasksResponse.data)
           ? tasksResponse.data
           : [tasksResponse.data];
@@ -36,26 +40,43 @@ function Courses() {
           tasks: tasks,
         });
       } catch (error) {
-        console.error('Error fetching course details:', error);
+        console.error("Error fetching course details:", error);
       }
     };
 
     fetchCourseDetails();
   }, [id]);
 
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span
+          key={i}
+          className={i <= rating ? 'star-filled' : 'star-empty'}
+          style={{ opacity: i > rating ? 0.3 : 1 }}
+        >
+          &#9733;
+        </span>
+      );
+    }
+    return stars;
+  };
   return (
-    <div>
+    <div className="course-details">
       {course ? (
-        <div className="course-details">
-          <h1>{course.courseName}</h1>
-          <p>Difficulty: {course.difficultyLevel}</p>
+        <>
+          <div>
+            <h1>{course.courseName}</h1>
+            <p>{renderStars(course.difficultyLevel)}</p>
+          </div>
           <div>
             <h2>Songs:</h2>
             <ul>
               {course.songs.map((song, index) => (
-                <li key={index}>
-                  <Link to={`/songs/${song._id}`}>{song.songName}</Link>
-                </li>
+                <ul key={index}>
+                  <Link to={`/songs/${song._id}`}>{song.title}</Link>
+                </ul>
               ))}
             </ul>
           </div>
@@ -63,14 +84,14 @@ function Courses() {
             <h2>Tasks:</h2>
             <ul>
               {course.tasks.map((task, index) => (
-                <li key={index}>
+                <ul key={index}>
                   <strong>{task.taskName}</strong>
                   <p>{task.body}</p>
-                </li>
+                </ul>
               ))}
             </ul>
           </div>
-        </div>
+        </>
       ) : (
         <p>Loading...</p>
       )}
