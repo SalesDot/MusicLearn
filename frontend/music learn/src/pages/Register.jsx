@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../AuthContext';
+import './register.css';
 
 function RegisterPage() {
   const [username, setUsername] = useState('');
@@ -10,6 +11,7 @@ function RegisterPage() {
   const [lastName, setLastName] = useState('');
   const [bio, setBio] = useState('');
   const { token, setToken } = useContext(AuthContext);
+  
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +44,6 @@ function RegisterPage() {
         console.log("Registration Successful");
         // Redirect to login page or show success message
       } else {
-        // Handle errors, e.g., username or email already taken
         console.error("Registration failed");
       }
     } catch (error) {
@@ -51,7 +52,7 @@ function RegisterPage() {
   };
 
   return (
-    <div>
+    <div className='form'>
       {token !== null ? (
         <p>User is logged in!</p>
       ) : (

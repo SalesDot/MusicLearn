@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import Alert from '../components/Alert';
 import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -54,7 +55,7 @@ function LoginPage() {
   const isLoggedIn = token !== null;
 
   return (
-    <div>
+    <div className='form'>
       {isLoggedIn ? (
         <div>
           <p>User is logged in!</p>

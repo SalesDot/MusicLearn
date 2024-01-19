@@ -1,0 +1,40 @@
+.form body {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form {
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .form input,
+  .form textarea {
+    margin: 5px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .form button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #3750e1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form button:hover {
+    background-color: #3750e1;
+  }
+  
