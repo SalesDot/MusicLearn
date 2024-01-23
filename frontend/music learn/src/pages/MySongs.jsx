@@ -1,24 +1,24 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import './Songs.css';
-import { AuthContext } from '../AuthContext';
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./Songs.css";
+import { AuthContext } from "../AuthContext";
 
 function MySongs() {
   const [songs, setSongs] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [showFavorites, setShowFavorites] = useState(false);
   const { token } = useContext(AuthContext);
   const [userFavorites, setUserFavorites] = useState([]);
-  
+
   // fetch all songs
   useEffect(() => {
     async function fetchSongs() {
       try {
-        const response = await axios.get('http://localhost:5000/songs/songs');
+        const response = await axios.get("http://localhost:5000/songs/songs");
         setSongs(response.data);
       } catch (error) {
-        console.error('Error fetching songs:', error);
+        console.error("Error fetching songs:", error);
       }
     }
     fetchSongs();
@@ -31,7 +31,7 @@ function MySongs() {
       stars.push(
         <span
           key={i}
-          className={i <= rating ? 'star-filled' : 'star-empty'}
+          className={i <= rating ? "star-filled" : "star-empty"}
           style={{ opacity: i > rating ? 0.3 : 1 }}
         >
           &#9733;
@@ -51,7 +51,7 @@ function MySongs() {
       song.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       song.artist.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  
+
   // favourites
   const toggleFavorites = async () => {
     setShowFavorites((prevState) => !prevState);
@@ -60,14 +60,17 @@ function MySongs() {
   useEffect(() => {
     async function fetchUserFavorites() {
       try {
-        const response = await axios.get('http://localhost:5000/users/songs/favorites', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:5000/users/songs/favorites",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setUserFavorites(response.data);
       } catch (error) {
-        console.error('Error fetching user favorites:', error);
+        console.error("Error fetching user favorites:", error);
       }
     }
 
@@ -76,14 +79,15 @@ function MySongs() {
     }
   }, [showFavorites, token]);
 
-  
   // sort by difficulty
-  const [sortOrder, setSortOrder] = useState('ascending');
+  const [sortOrder, setSortOrder] = useState("ascending");
   const toggleSortOrder = () => {
-    setSortOrder((prevOrder) => (prevOrder === 'ascending' ? 'descending' : 'ascending'));
+    setSortOrder((prevOrder) =>
+      prevOrder === "ascending" ? "descending" : "ascending"
+    );
   };
   const sortedSongs = filteredSongs.slice().sort((a, b) => {
-    if (sortOrder === 'ascending') {
+    if (sortOrder === "ascending") {
       return a.difficultyRating - b.difficultyRating;
     } else {
       return b.difficultyRating - a.difficultyRating;
@@ -96,28 +100,37 @@ function MySongs() {
     }
     return sortedSongs;
   };
-  const filteredSongsToDisplay = getFilteredSongs();  
+  const filteredSongsToDisplay = getFilteredSongs();
 
   return (
     <div>
       <h1>All Songs</h1>
       <div>
-      <input
-        type="text"
-        placeholder="Search by title or artist"
-        value={searchQuery}
-        onChange={handleSearch}
-      />
-      <button onClick={toggleFavorites}>
-        {showFavorites ? 'Show All Songs' : 'Show Favorites'}
-      </button>
+        <div>
+          <div
+            className="toggle-favorites-button"
+            style={{ marginBottom: "10px" }}
+          >
+            <button onClick={toggleFavorites}>
+              {showFavorites ? "Show All Songs" : "Show Favorites"}
+            </button>
+          </div>
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search by title or artist"
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+          </div>
+        </div>
       </div>
       <div className="song-titles">
         <span>Title</span>
         <span>Artist</span>
         <span onClick={toggleSortOrder}>
-          Difficulty{''}
-          {sortOrder === 'ascending' ? (
+          Difficulty{""}
+          {sortOrder === "ascending" ? (
             <span>&#9660;</span>
           ) : (
             <span>&#9650;</span>

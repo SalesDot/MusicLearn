@@ -1,0 +1,49 @@
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.course-title {
+  margin: 0;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.list-item {
+  width: 100%;
+  padding: 10px; 
+  box-sizing: border-box; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  
+}
+
+.item-title {
+  flex: 1;
+}
+
+.complete-button {
+  background-color: #3750e1;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}

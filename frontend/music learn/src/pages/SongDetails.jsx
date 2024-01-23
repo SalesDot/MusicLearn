@@ -8,7 +8,7 @@ function SongDetails() {
   const [song, setSong] = useState(null);
   const [addedToFavorites, setAddedToFavorites] = useState(false);
   const [userFavorites, setUserFavorites] = useState([]);
-  const { token, username } = useContext(AuthContext);
+  const { token} = useContext(AuthContext);
   const isFavorite = userFavorites.some(favorite => favorite._id === id);
 
 
@@ -25,6 +25,7 @@ function SongDetails() {
     fetchSong();
   }, [id]);
 
+  
   useEffect(() => {
     const fetchUserFavorites = async () => {
       try {

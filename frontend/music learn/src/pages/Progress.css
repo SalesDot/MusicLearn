@@ -48,8 +48,8 @@
   
   .course-link {
     display: block;
-    text-decoration: none;
-    color: #333;
+    text-decoration: underline;
+    color: rgb(0, 68, 255);
     text-align: center;
     padding: 5px;
     border: 1px solid #ccc;

@@ -1,0 +1,59 @@
+
+.dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+
+  .account-overview {
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+  
+
+  .leaderboard-container {
+    flex-basis: 300px;
+  }
+  
+
+  .leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+  }
+  
+  .trophy {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  .gold {
+    fill: gold;
+  }
+  
+  .silver {
+    fill: silver;
+  }
+  
+  .bronze {
+    fill: #cd7f32;
+  }
+  

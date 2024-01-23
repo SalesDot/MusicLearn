@@ -10,8 +10,14 @@ const userSchema = new Schema({
   lastName: { type: String, required: true },
   bio: String, 
   favoritedSongs: [{ type: Schema.Types.ObjectId, ref: 'Song' }],
+  completedSongs: [{ type: Schema.Types.ObjectId, ref: 'Song' }],
   completedCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
-  completedTasks: [{ type: Schema.Types.ObjectId, ref: 'Task' }]
+  completedTasks: [{ type: Schema.Types.ObjectId, ref: 'Task' }],
+  points: {
+    type: Number,
+    default: 0,
+  },
+  posts: [{ type: String}],
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

@@ -47,24 +47,25 @@ function Progress() {
 
   return (
     <div className="progress-container">
-      <button onClick={() => setShowCompleted(!showCompleted)}>
-        {showCompleted ? 'Show All Courses' : 'Show Completed Courses'}
-      </button>
       <div className="song-titles">
         <span>Course Title</span>
         <span>Difficulty</span>
       </div>
-      <ul className="course-list">
-        {filteredCourses.map(course => (
-          <li key={course._id} className="course-details">
-            <Link to={`/courses/${course._id}`} className="course-link">
-              {course.courseName}
-              {completedCourses.includes(course._id) ? ' (Completed)' : ''}
-            </Link>
-            <span>{renderStars(course.difficultyLevel)}</span>
-          </li>
-        ))}
-      </ul>
+      {filteredCourses.length === 0 ? (
+        <p>No courses to show</p>
+      ) : (
+        <ul className="course-list">
+          {filteredCourses.map(course => (
+            <li key={course._id} className="course-details">
+              <Link to={`/courses/${course._id}`} className="course-link">
+                {course.courseName}
+                {completedCourses.includes(course._id) ? ' (Completed)' : ''}
+              </Link>
+              <span>{renderStars(course.difficultyLevel)}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
