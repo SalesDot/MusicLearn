@@ -47,3 +47,13 @@
   border-radius: 3px;
   cursor: pointer;
 }
+
+button {
+  width: 10%;
+  padding: 10px;
+  background-color: #3750e1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

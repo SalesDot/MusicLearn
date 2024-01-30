@@ -8,9 +8,9 @@ function SongDetails() {
   const [song, setSong] = useState(null);
   const [addedToFavorites, setAddedToFavorites] = useState(false);
   const [userFavorites, setUserFavorites] = useState([]);
-  const { token} = useContext(AuthContext);
+  const [completedSong, setCompletedSong] = useState(false);
+  const { token } = useContext(AuthContext);
   const isFavorite = userFavorites.some(favorite => favorite._id === id);
-
 
   useEffect(() => {
     const fetchSong = async () => {
@@ -25,7 +25,6 @@ function SongDetails() {
     fetchSong();
   }, [id]);
 
-  
   useEffect(() => {
     const fetchUserFavorites = async () => {
       try {
@@ -45,6 +44,28 @@ function SongDetails() {
     }
   }, [token]);
 
+  useEffect(() => {
+    const fetchUserCompletedSongs = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/users/completedSongs', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        
+        const completedSongsIds = response.data;
+        const completedSongsArray = response.data.completedSongs;
+        
+        setCompletedSong(completedSongsArray.includes(id));
+      } catch (error) {
+        console.error('Error fetching user completed songs:', error);
+      }
+    };
+  
+    if (token) {
+      fetchUserCompletedSongs();
+    }
+  }, [token, id]);
   const addToFavorites = async () => {
     try {
       await axios.post(
@@ -79,6 +100,23 @@ function SongDetails() {
     }
   };
 
+  const addToCompletedSongs = async () => {
+    try {
+      await axios.post(
+        'http://localhost:5000/users/completeSong',
+        { songId: id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCompletedSong(true);
+    } catch (error) {
+      console.error('Error adding song to completed songs:', error);
+    }
+  };
+
   if (!song) {
     return <div>Loading...</div>;
   }
@@ -92,15 +130,22 @@ function SongDetails() {
 
   return (
     <div>
-      <div><h2>{song.title}</h2>{token && !addedToFavorites && !isFavorite && (
-        <button onClick={addToFavorites}>Add to Favorites</button>
-      )}
-      {token && (addedToFavorites || isFavorite) && (
-        <button onClick={removeFromFavorites}>Remove from Favorites</button>
-      )}</div>
+      <div>
+        <h2>{song.title}</h2>
+        {token && !addedToFavorites && !isFavorite && (
+          <button onClick={addToFavorites}>Add to Favorites</button>
+        )}
+        {token && (addedToFavorites || isFavorite) && (
+          <button onClick={removeFromFavorites}>Remove from Favorites</button>
+        )}
+        
+      </div>
       <p>Artist: {song.artist}</p>
       <p>Difficulty Rating: {song.difficultyRating}</p>
       <div>{tabSections}</div>
+      {token && !completedSong && (
+          <button onClick={addToCompletedSongs}>Mark as Completed</button>
+        )}
     </div>
   );
 }

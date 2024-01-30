@@ -17,7 +17,12 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
-  posts: [{ type: String}],
+  posts: [
+    {
+      content: { type: String, required: true },
+      createdAt: { type: Date, default: Date.now }
+    }
+  ],
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
