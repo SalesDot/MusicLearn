@@ -55,6 +55,7 @@ function LoginPage() {
   const isLoggedIn = token !== null;
 
   return (
+    <div className='main'>
     <div className='form'>
       {isLoggedIn ? (
         <div>
@@ -82,6 +83,7 @@ function LoginPage() {
           {showError && <Alert message={errorMessage} onClose={handleCloseError} />}
         </div>
       )}
+    </div>
     </div>
   );
 }

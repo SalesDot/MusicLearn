@@ -19,32 +19,32 @@ function Courses() {
           },
         });
         setUser(userResponse.data);
-
+    
         const courseResponse = await axios.get(`http://localhost:5000/courses/${id}`);
         const courseDetails = courseResponse.data;
-
+    
         const songIds = Array.isArray(courseDetails.songIds)
           ? courseDetails.songIds
           : [courseDetails.songIds];
-
-        const songsResponse = await axios.get(
-          `http://localhost:5000/songs/songs/${songIds.join(",")}`
+    
+        const songs = await Promise.all(
+          songIds.map(async (songId) => {
+            const songResponse = await axios.get(`http://localhost:5000/songs/songs/${songId}`);
+            return songResponse.data;
+          })
         );
-        const songs = Array.isArray(songsResponse.data)
-          ? songsResponse.data
-          : [songsResponse.data];
-
+    
         const taskIds = Array.isArray(courseDetails.taskIds)
           ? courseDetails.taskIds
           : [courseDetails.taskIds];
-
-        const tasksResponse = await axios.get(
-          `http://localhost:5000/tasks/${taskIds.join(",")}`
+    
+        const tasks = await Promise.all(
+          taskIds.map(async (taskId) => {
+            const taskResponse = await axios.get(`http://localhost:5000/tasks/${taskId}`);
+            return taskResponse.data;
+          })
         );
-        const tasks = Array.isArray(tasksResponse.data)
-          ? tasksResponse.data
-          : [tasksResponse.data];
-
+    
         setCourse({
           ...courseDetails,
           songs: songs,
@@ -178,27 +178,29 @@ function Courses() {
               {renderStars(course.difficultyLevel)}
             </div>
           </div>
-          <div className="section">
-            <h2>Songs</h2>
-            <div className="list">
-              {course.songs.map((song, index) => (
-                <div className="list-item" key={index}>
-                  <div className="item-title">
-                    <Link to={`/songs/${song._id}`}>{song.title}</Link>
+          {course.songs.length > 0 && (
+            <div className="section">
+              <h2>Songs</h2>
+              <div className="list">
+                {course.songs.map((song, index) => (
+                  <div className="list-item" key={index}>
+                    <div className="item-title">
+                      <Link to={`/songs/${song._id}`}>{song.title}</Link>
+                    </div>
+                    {user.completedSongs && user.completedSongs.includes(String(song._id)) ? (
+                      <button className="complete-button" disabled>
+                        Song Complete!
+                      </button>
+                    ) : (
+                      <button className="complete-button" onClick={() => completeSong(song._id)}>
+                        Complete Song
+                      </button>
+                    )}
                   </div>
-                  {user.completedSongs && user.completedSongs.includes(String(song._id)) ? (
-                    <button className="complete-button" disabled>
-                      Song Complete!
-                    </button>
-                  ) : (
-                    <button className="complete-button" onClick={() => completeSong(song._id)}>
-                      Complete Song
-                    </button>
-                  )}
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="section">
             <h2>Tasks</h2>

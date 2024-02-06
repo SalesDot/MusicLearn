@@ -23,6 +23,12 @@ const userSchema = new Schema({
       createdAt: { type: Date, default: Date.now }
     }
   ],
+  Level: {
+    type: Number,
+    min: 1,
+    max: 5,
+    default: 1,
+  },
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

@@ -10,9 +10,10 @@ function RegisterPage() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [bio, setBio] = useState('');
+  const [Level, setLevel] = useState(1); // Default to 1
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const { token, setToken } = useContext(AuthContext);
-  
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (token !== null) {
@@ -36,73 +37,105 @@ function RegisterPage() {
           firstName,
           lastName,
           bio,
+          Level,
         }),
       });
-  
+
       if (response.ok) {
         // Registration was successful
-        console.log("Registration Successful");
-        // Redirect to login page or show success message
+        console.log('Registration Successful');
+        setRegistrationSuccess(true);
       } else {
-        console.error("Registration failed");
+        console.error('Registration failed');
       }
     } catch (error) {
-      console.error("An error occurred:", error);
+      console.error('An error occurred:', error);
     }
   };
 
+  const resetForm = () => {
+    setUsername('');
+    setEmail('');
+    setPassword('');
+    setDateOfBirth('');
+    setFirstName('');
+    setLastName('');
+    setBio('');
+    setLevel(1);
+    setRegistrationSuccess(false);
+  };
+
   return (
-    <div className='form'>
-      {token !== null ? (
-        <p>User is logged in!</p>
+    <div className="main">
+      {registrationSuccess ? (
+        <div>
+          <p>Registration successful</p>
+          <button onClick={resetForm}>Register Again</button>
+        </div>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <h2>Register</h2>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-          />
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-          />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-          <input
-            type="date"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-            placeholder="Date of Birth"
-          />
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            placeholder="First Name"
-          />
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            placeholder="Last Name"
-          />
-          <textarea
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            placeholder="Bio"
-          />
-          <button type="submit">Register</button>
-        </form>
+        <div className="form">
+          {token !== null ? (
+            <p>User is logged in!</p>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <h2>Register</h2>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+              />
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+              />
+              <input
+                type="date"
+                value={dateOfBirth}
+                onChange={(e) => setDateOfBirth(e.target.value)}
+                placeholder="Date of Birth"
+              />
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First Name"
+              />
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Last Name"
+              />
+              <textarea
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+                placeholder="Bio"
+              />
+              <label>
+                Level:
+                <select value={Level} onChange={(e) => setLevel(Number(e.target.value))}>
+                  <option value={1}>New</option>
+                  <option value={2}>Beginner</option>
+                  <option value={3}>Intermediate</option>
+                  <option value={4}>Advanced</option>
+                  <option value={5}>Expert</option>
+                </select>
+              </label>
+              <button type="submit">Register</button>
+            </form>
+          )}
+          {token !== null && <button onClick={() => setToken(null)}>Logout</button>}
+        </div>
       )}
-       {token !== null && <button onClick={() => setToken(null)}>Logout</button>}
     </div>
   );
 }

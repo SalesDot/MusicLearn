@@ -44,7 +44,8 @@ router.post('/register', async (req, res) => {
     dateOfBirth,
     firstName,
     lastName,
-    bio
+    bio,
+    Level
   } = req.body;
 
   try {
@@ -56,7 +57,8 @@ router.post('/register', async (req, res) => {
       dateOfBirth,
       firstName,
       lastName,
-      bio
+      bio,
+      Level
     });
     
     await newUser.save();
@@ -156,7 +158,7 @@ router.get('/leaderboard', async (req, res) => {
   try {
     const leaderboard = await User.find({})
       .sort({ points: -1 })
-      .limit(10);
+      .limit(6);
 
     res.json(leaderboard);
   } catch (error) {
@@ -424,7 +426,7 @@ router.get('/suggestSongs', async (req, res) => {
 
     const suggestedSongs = await Song.find({
       _id: { $nin: [...user.completedSongs, ...user.favoritedSongs] }
-    }).sort({ difficultyRating: 1 }).limit(2);
+    }).sort({ difficultyRating: 1 });
 
     res.json(suggestedSongs);
   } catch (error) {

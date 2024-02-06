@@ -8,8 +8,8 @@ mongoose.connect(mongoDB)
 
     try {
       const newTask = new Task({
-        taskName: "Test Task",
-        body: "Here is how to complete this test!",
+        taskName: "Use the following resources to learn simple chord shapes",
+        body: "https://www.libertyparkmusic.com/read-guitar-chord-diagrams/",
       });
 
       const savedTask = await newTask.save();

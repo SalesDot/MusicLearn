@@ -75,7 +75,12 @@ function Home() {
           },
         }
       );
-      setSuggestedSongs(response.data);
+      const allSuggestedSongs = response.data;
+      const filteredSongs = allSuggestedSongs.filter(
+        (song) => song.difficultyRating >= userDetails.Level
+      );
+      const finalSongs = filteredSongs.slice(0,3);
+      setSuggestedSongs(finalSongs);
     } catch (error) {
       console.error("Error fetching suggested songs:", error);
     }
@@ -85,9 +90,13 @@ function Home() {
     fetchLeaderboard();
     fetchUserDetails();
     fetchRecentPosts();
-    fetchSuggestedSongs();
   }, [token]);
 
+  useEffect(() => {
+    if (userDetails) {
+      fetchSuggestedSongs();
+    }
+  }, [userDetails]);
   const handlePostChange = (e) => {
     setNewPostContent(e.target.value);
   };
@@ -105,7 +114,14 @@ function Home() {
       console.error("Error adding post:", error);
     }
   };
-  console.log(suggestedSongs);
+  if (!token) {
+    return (
+      <div className="welcome-message">
+        <h1>Welcome to MusicLearn!</h1>
+        <p>Register or Login to get started now!</p>
+      </div>
+    );
+  }
   return userDetails ? (
     <div className="dashboard-container">
       

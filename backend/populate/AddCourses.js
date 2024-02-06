@@ -8,10 +8,10 @@ mongoose.connect(mongoDB)
     console.log('Connected to MongoDB');
 
     const newCourse = new Course({
-      courseName: "Test Course",
-      difficultyLevel: 2,
+      courseName: "Basic Chords and Chord Progression",
+      difficultyLevel: 1,
       songs: [],
-      tasks: ['659ef41134b7e7aed42b02a8'],
+      tasks: [],
     });
 
     newCourse.save()
