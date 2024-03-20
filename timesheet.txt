@@ -54,14 +54,14 @@ Week 2
 
 ### 3rd October
 Began user study
-1 hour
+3 hour
 
 ### 5th October 
 Completed final user study
  2 hour
 
- 10th October
- ## 30 min meeting with advisor
+10th October
+## 30 min meeting with advisor
 
 13th October
 ## 2 hours working on researching
@@ -138,4 +138,62 @@ rest of November, working on other projects
 ## 3 hours coding
 
 10th January
-##
+## 4 hours coding
+
+13th January
+## 2 hours coding
+## 2 hours researching eval methods
+
+15th January
+## 4 hours coding
+
+16th January
+## 15 min advisor meeting
+
+18th January
+##2 hours coding
+
+#20th January
+## 3 hours researching
+
+22nd January
+## 1 hour coding
+
+23rd January
+## Advisor meeting 15 mins
+
+27th January
+## nearing end of coding, 3 hours spent
+
+30th January
+## meeting discussing next steps to finalise implementation
+## 15 mins
+## 3 hours spent finalising and tiding up codebase
+
+6th Feb
+## code finalised, needs tidied and documented
+## meeting with advisor, 15 mins
+## began researching methods of testing and evaluating
+8 hours
+
+13th Feb
+## rudamentary plan for evaluating made, feedback from advisor for refinement
+## began contacting participants
+##9 hours
+20th Feb
+## away this week so no meeting
+## researching dissertation for roughly 18 hours
+
+27th Feb
+## finalised plan for evaluating
+## began writing dissertation
+## began evaluating
+20 hours
+
+5th March
+## continued writing dissertation
+25 hours
+
+12th March
+## continuing writing dissertation
+30 hours

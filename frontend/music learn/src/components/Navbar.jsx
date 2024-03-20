@@ -20,11 +20,9 @@ function Navbar() {
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
           <div className='navbar-title'>
-            {/*<img src= alt="Logo" className='navbar-logo' />*/}
             <h1>MusicLearn</h1>
           </div>
           <div className='navbar-content'>
-            {/* Add your content on the far right here */}
           </div>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

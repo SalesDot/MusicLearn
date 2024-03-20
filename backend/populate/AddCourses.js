@@ -8,7 +8,7 @@ mongoose.connect(mongoDB)
     console.log('Connected to MongoDB');
 
     const newCourse = new Course({
-      courseName: "Basic Chords and Chord Progression",
+      courseName: "Power Chords",
       difficultyLevel: 1,
       songs: [],
       tasks: [],

@@ -10,7 +10,7 @@ function RegisterPage() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [bio, setBio] = useState('');
-  const [Level, setLevel] = useState(1); // Default to 1
+  const [Level, setLevel] = useState(1);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const { token, setToken } = useContext(AuthContext);
 
@@ -42,7 +42,6 @@ function RegisterPage() {
       });
 
       if (response.ok) {
-        // Registration was successful
         console.log('Registration Successful');
         setRegistrationSuccess(true);
       } else {

@@ -8,8 +8,8 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', async () => {
   try {
-    const courseId = '65c11ab23b8cbd142199d70b';
-    const taskId = '65c11b36f04e4761b43f5c4a';
+    const courseId = '65c22cc303e754d492be297b';
+    const taskId = '65c22d03cb11f3f2ab9c594b';
 
     const updatedCourse = await Course.findByIdAndUpdate(
       courseId,
